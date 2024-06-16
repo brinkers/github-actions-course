@@ -9,5 +9,10 @@ jobs:
         steps:
             -   name: checkout cde
                 uses: actions/checkout@v4
-            -   name: print folders
-                run: ls
+            -   name: setup node
+                uses: actions/setup-node@v3
+                with:
+                        node-version: '20.x'
+            -   name: Install dependencies
+                run: nmp ci
+
