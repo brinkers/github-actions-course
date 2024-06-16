@@ -1,0 +1,13 @@
+name: 04 - Using Actions
+
+on:
+    push:
+
+jobs:
+    buid:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: checkout cde
+                uses: actions/checkout@v4
+            -   name: print folders
+                run: ls
