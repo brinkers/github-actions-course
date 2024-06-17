@@ -2,6 +2,7 @@ name:  06 - contexts
 
 on:
     - push
+    - workflow_dispatch
 
 
 jobs:
@@ -20,4 +21,3 @@ jobs:
             -   name: Display variables
                 run: |
                     echo "Variable value ${{ vars.MY_VAR }}"
-                    
