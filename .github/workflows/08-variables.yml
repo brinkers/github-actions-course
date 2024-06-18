@@ -1,5 +1,5 @@
 name:  08 - using variables
-run-name: "07 - Using expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}"
+run-name: "08 - Using variables"
 
 on:
     push:
