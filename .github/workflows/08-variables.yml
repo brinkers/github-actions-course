@@ -2,7 +2,6 @@ name:  08 - using variables
 run-name: "08 - Using variables"
 
 on:
-    push:
     workflow_dispatch:
         inputs:
             debug:
