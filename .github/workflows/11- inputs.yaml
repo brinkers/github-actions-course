@@ -29,7 +29,7 @@ jobs:
             run: echo "Building from tag ${{ inputs.tag }}"
     deploy:
       runs-on: ubuntu-latest
-      depends: build
+      needs: build
       if: ${{ !inputs.dry-run }}
       environment: ${{ inputs.target }}
       steps:
