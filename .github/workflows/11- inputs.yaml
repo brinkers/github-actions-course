@@ -1,5 +1,5 @@
-name: 11 - building blocks
-run-name: Building blocks
+name: 11 - inputs
+run-name: Inputs
 
 on:
   workflow_dispatch:
@@ -29,6 +29,7 @@ jobs:
             run: echo "Building from tag ${{ inputs.tag }}"
     deploy:
       runs-on: ubuntu-latest
+      depends: build
       if: ${{ !inputs.dry-run }}
       environment: ${{ inputs.target }}
       steps:
