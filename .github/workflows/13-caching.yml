@@ -1,4 +1,4 @@
-name: 13 - Using cachine
+name: 13 - Using caching
 
 
 on:
@@ -27,7 +27,7 @@ jobs:
             -   name: Testing
                 run:  npm test
             -   name: Building
-                run:  npm build
+                run:  npm run build
             -   name: Deploy to non prod
                 run: echo "Deploying to non prod"
 
