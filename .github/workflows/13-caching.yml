@@ -16,6 +16,7 @@ on:
                     - 20.x
                     - 21.x
                     - 22.x
+                default: 20.x
 
 
 jobs:
@@ -31,7 +32,15 @@ jobs:
                 uses: actions/setup-node@v3
                 with:
                     node-version: ${{ inputs.node-version }}
-            -   name: Install depenencies
+            -   name: download cached dependencies
+                uses: actions/cache@v3
+                if:   ${{ inputs.use-cache }}
+                id: cache
+                with:
+                    key: depds-node-modules=${{ hashFiles('13-caching/react-app/package-lock.json') }}
+                    path: 13-caching/react-app/node_modules
+            -   name: Install dependencies
+                if: steps.cache.outputs.cache-hit != 'true'
                 run:  npm ci
             -   name: Testing
                 run:  npm test
