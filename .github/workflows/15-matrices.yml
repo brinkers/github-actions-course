@@ -1,4 +1,4 @@
-name: 15 - workig with matrices
+name: 15 - working with matrices
 
 on:
     workflow_dispatch
@@ -8,15 +8,30 @@ jobs:
         name: ${{ matrix.os }}-${{matrix.node-version}}
         runs-on: ${{ matrix.os }}
         strategy:
+            fail-fast: false
             matrix:
                 node-version: [18.x, 20.x, 21.x]
                 os:
                     -   ubuntu-latest
                     -   windows-latest
+                include:
+                    -   os: ubuntu-latest
+                        node-version: 16.x
+                    -   os: ubuntu-latest
+                        node-version: 21.x
+                        tag: experimental
+
         steps:
             -   name: setup node
                 uses: actions/setup-node@v4
                 with:
                     node-version: ${{ matrix.node-version }}
+            -   name: Fail if experimental
+                if: matrix.tag == 'experimental'
+                run: exit 1
             -   name: Perform some tests
-                run:  echo "Running tests on os ${{ matrix.os }}  using NodeJS ${{ matrix.node-version }}"
+                run:  |
+                    echo "Running tests on os ${{ matrix.os }}  using NodeJS ${{ matrix.node-version }}"
+                    sleep 10
+            -   name: uploading test results
+                run: echo Uploading test results
